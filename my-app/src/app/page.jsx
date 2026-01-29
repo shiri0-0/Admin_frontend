@@ -2,9 +2,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Navbar from "@/components/main/navbar";
-import HeroVideo from "@/components/main/HeroVideo";
-
+import Hero from "@/components/main/hero.jsx";
+import HeroVideo from "@/main/HeroVideo";
 export default function HomePage() {
   const [showIntro, setShowIntro] = useState(true);
 
@@ -13,16 +12,23 @@ export default function HomePage() {
   }, [showIntro]);
 
   return (
+   <>
+  {showIntro ? (
+    <HeroVideo onFinish={() => setShowIntro(false)} />
+  ) : (
     <>
-      {showIntro ? (
-        <HeroVideo onFinish={() => setShowIntro(false)} />
-      ) : (
-        <>
-          <Navbar />
+      <Navbar />
 
-          
+      {/* MAIN CONTENT */}
+      <main className="min-h-screen bg-gray-50 pt-24">
+        <>
+          <Hero />
         </>
-      )}
+      </main>
     </>
+  )}
+</>
+
   );
 }
+
